@@ -1,8 +1,9 @@
 // Runs in ISOLATED world — can use chrome.runtime APIs.
 // 1. Relays auth token from inject.ts (MAIN world) to service worker.
 // 2. Observes the Spotify DOM for artist links and reports encountered IDs.
+// 3. Alt+Shift+R shortcut: report the currently playing artist to the community.
 
-import { TOKEN_MESSAGE_TYPE } from "../shared/constants";
+import { TOKEN_MESSAGE_TYPE, GITHUB_REPORT_URL } from "../shared/constants";
 import type { ArtistEntry } from "../shared/types";
 
 interface TokenMessage {
@@ -93,3 +94,74 @@ if (document.body) {
 } else {
   document.addEventListener("DOMContentLoaded", startObserver, { once: true });
 }
+
+// ── Quick-report shortcut (Alt+Shift+R) ─────────────────────────────────────
+// While on Spotify, press Alt+Shift+R to open a pre-filled GitHub issue
+// reporting the currently playing artist as AI-generated.
+
+function getCurrentArtist(): { id: string; name: string } | null {
+  const selectors = [
+    '[data-testid="nowplaying-widget"] a[href*="/artist/"]',
+    '[data-testid="context-item-info-artist"] a[href*="/artist/"]',
+    'footer a[href*="/artist/"]',
+  ];
+  for (const selector of selectors) {
+    const anchor = document.querySelector<HTMLAnchorElement>(selector);
+    if (!anchor) continue;
+    const match = /\/artist\/([A-Za-z0-9]+)/.exec(anchor.getAttribute("href") ?? "");
+    if (!match) continue;
+    return { id: match[1], name: anchor.textContent?.trim() ?? "" };
+  }
+  return null;
+}
+
+function showToast(message: string): void {
+  const toast = document.createElement("div");
+  toast.textContent = message;
+  Object.assign(toast.style, {
+    position: "fixed",
+    bottom: "80px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    background: "#1db954",
+    color: "#fff",
+    padding: "10px 20px",
+    borderRadius: "6px",
+    fontSize: "14px",
+    fontFamily: "sans-serif",
+    zIndex: "999999",
+    pointerEvents: "none",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+    opacity: "1",
+    transition: "opacity 0.3s",
+  });
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
+}
+
+document.addEventListener("keydown", (e) => {
+  if (!e.altKey || !e.shiftKey || e.key !== "R") return;
+  e.preventDefault();
+
+  const artist = getCurrentArtist();
+  if (!artist) {
+    showToast("PurePlay: play a track first, then try again");
+    return;
+  }
+
+  const title = `Report AI artist: ${artist.name} (${artist.id})`;
+  const body = [
+    `**Artist:** ${artist.name}`,
+    `**Spotify ID:** ${artist.id}`,
+    `**Spotify URL:** https://open.spotify.com/artist/${artist.id}`,
+    "",
+    "_Reported via PurePlay extension (Alt+Shift+R)_",
+  ].join("\n");
+
+  const url = `${GITHUB_REPORT_URL}?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+  window.open(url, "_blank", "noopener");
+  showToast(`Reporting "${artist.name}" - check the new tab`);
+});

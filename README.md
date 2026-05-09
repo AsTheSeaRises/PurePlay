@@ -94,7 +94,7 @@ The PurePlay icon will now always be visible in your Chrome toolbar.
 2. Log in if you aren't already
 3. PurePlay will automatically detect your session and begin syncing
 
-That's it. The first sync will block all currently known AI artists. You'll see the count in the PurePlay popup (click the icon in your toolbar).
+That's it. The first sync will block all currently known AI artists. You'll see the count in the PurePlay popup (click the icon in your toolbar).\n\n---\n\n## Keyboard Shortcut\n\nWhile listening on Spotify, press **Alt+Shift+R** to instantly report the currently playing artist as AI-generated.\n\n- A green message will briefly appear on screen confirming it worked\n- A new tab will open with a pre-filled report form for the community list\n- Submit the form to flag the artist for review\n\nNo need to copy URLs or dig through menus - just press the shortcut while the track is playing.
 
 ---
 
@@ -181,7 +181,7 @@ In the example above: **`4Z8WiqH9PZ97uS6Z2MjaSI`**
 
 ---
 
-## Frequently Asked Questions
+## Frequently Asked Questions\n\n**Is there a keyboard shortcut to report an artist?**  \nYes. Press **Alt+Shift+R** while a track is playing on Spotify. A new tab will open with a pre-filled report form. A green confirmation message will appear briefly on the Spotify page.
 
 **Does PurePlay access my Spotify password or payment info?**  
 No. It only reads the temporary session token that Spotify Web Player creates when you log in. This is the same kind of token Spotify uses internally to load your library.
