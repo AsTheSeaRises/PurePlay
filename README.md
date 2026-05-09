@@ -20,34 +20,71 @@ Spotify is increasingly filled with AI-generated "artists": algorithmically prod
 
 ## Installation
 
-> PurePlay is not yet on the Chrome Web Store. Follow these steps to install it manually — it only takes a couple of minutes.
+> PurePlay is not yet on the Chrome Web Store — it's coming soon. In the meantime, here's how to install it manually. It takes about 5 minutes and you only have to do it once.
 
-### Step 1: Download the extension
+---
 
-1. Go to the [Releases page](https://github.com/your-username/pureplay/releases) *(or wherever the built zip is hosted)*
-2. Download the latest `pureplay-vX.X.X.zip` file
-3. Unzip it somewhere you won't accidentally move or delete it (e.g. your Documents folder)
+### Step 1 — Download the extension
 
-### Step 2: Open Chrome's extensions page
+1. Go to the [**Releases page**](https://github.com/AsTheSeaRises/PurePlay/releases)
+2. Click on the most recent release (at the top of the list)
+3. Scroll down to the **Assets** section and click **pureplay-v1.0.0.zip** to download it
 
-1. In Chrome, click the three-dot menu in the top-right corner
-2. Go to **More Tools → Extensions**  
-   *(or type `chrome://extensions` in the address bar and press Enter)*
+A file called `pureplay-v1.0.0.zip` will appear in your Downloads folder.
 
-### Step 3: Enable Developer Mode
+---
 
-1. In the top-right corner of the Extensions page, toggle on **Developer mode**
+### Step 2 — Unzip the file
 
-### Step 4: Load the extension
+**On a Mac:**
+- Double-click the zip file in your Downloads folder. A new folder called `pureplay-v1.0.0` will appear next to it.
+- Move that folder somewhere permanent — for example, drag it to your **Documents** folder.
 
-1. Click **Load unpacked**
-2. Navigate to the folder you unzipped in Step 1 and select the `dist` folder inside it
-3. PurePlay should now appear in your extensions list
+**On Windows:**
+- Right-click the zip file and choose **Extract All…**
+- Click **Extract**. A new folder called `pureplay-v1.0.0` will appear.
+- Move that folder somewhere permanent — for example, drag it to your **Documents** folder.
 
-### Step 5: Pin the extension (optional but recommended)
+> **Important:** Don't delete or move this folder after installation. Chrome needs it to stay in the same place.
 
-1. Click the puzzle-piece icon in the top-right of Chrome
-2. Click the pin icon next to PurePlay so it always shows in your toolbar
+---
+
+### Step 3 — Open Chrome's Extensions page
+
+1. Open **Google Chrome**
+2. In the address bar at the top, type: `chrome://extensions` and press **Enter**
+
+You'll see a page titled "Extensions".
+
+---
+
+### Step 4 — Turn on Developer Mode
+
+Look in the **top-right corner** of the Extensions page. You'll see a switch labelled **Developer mode**.
+
+Click it to turn it **on**. (The switch will turn blue and a few new buttons will appear.)
+
+---
+
+### Step 5 — Load PurePlay
+
+1. Click the **Load unpacked** button that just appeared in the top-left
+2. A folder browser window will open
+3. Navigate to the `pureplay-v1.0.0` folder you saved in Step 2, and open it
+4. Inside that folder, click on the folder named **`dist`** to select it
+5. Click **Select** (Mac) or **Select Folder** (Windows)
+
+PurePlay will now appear in your extensions list with a green checkmark.
+
+---
+
+### Step 6 — Pin PurePlay to your toolbar (recommended)
+
+1. Look for the **puzzle piece icon** (🧩) in the top-right corner of Chrome, next to the address bar
+2. Click it — a list of your extensions will appear
+3. Find **PurePlay** in the list and click the **pin icon** (📌) next to it
+
+The PurePlay icon will now always be visible in your Chrome toolbar.
 
 ---
 
