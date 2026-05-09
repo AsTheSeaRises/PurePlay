@@ -70,7 +70,8 @@ export type MessageType =
   | { type: "TRIGGER_SYNC" }
   | { type: "GET_STATUS" }
   | { type: "WHITELIST_ARTIST"; id: string; name: string }
-  | { type: "DISMISS_FLAGGED"; id: string };
+  | { type: "DISMISS_FLAGGED"; id: string }
+  | { type: "ARTISTS_ENCOUNTERED"; artists: ArtistEntry[] };
 
 export interface SyncResult {
   newArtists: ArtistEntry[];

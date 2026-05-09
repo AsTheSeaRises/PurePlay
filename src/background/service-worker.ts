@@ -68,34 +68,6 @@ async function runSyncPipeline(): Promise<void> {
     // Update known state
     await storage.setLastKnownArtistIds(fullList.map((a) => a.id));
     await storage.setLastSyncSha(sha);
-
-    // Run heuristics on artists we haven't scored yet
-    if (settings.heuristicsEnabled) {
-      const existingScores = await storage.getHeuristicScores();
-      const blockedIds = new Set(await storage.getBlockedArtistIds());
-      const whitelistIds = await storage.getWhitelistIds();
-
-      // Score only new CSV artists not already handled
-      const unscored = toBlock.filter(
-        (a) => !existingScores[a.id] && !blockedIds.has(a.id) && !whitelistIds.has(a.id)
-      );
-
-      for (const artist of unscored.slice(0, 20)) { // cap per-run to avoid timeout
-        const score = await scoreArtist(artist, token);
-        if (!score) continue;
-
-        await storage.setHeuristicScore(artist.id, score);
-
-        if (score.score >= settings.autoBlockThreshold && !blockedIds.has(artist.id)) {
-          const result = await blockArtists([artist], username, token);
-          if (result.blocked.length > 0) {
-            await storage.addBlockedArtistIds(result.blocked);
-          }
-        } else if (score.score >= settings.flagThreshold) {
-          await storage.addFlaggedArtist(toFlaggedArtist(artist, score));
-        }
-      }
-    }
   } catch (err) {
     await storage.addError({
       message: err instanceof Error ? err.message : "Unknown sync error",
@@ -103,6 +75,45 @@ async function runSyncPipeline(): Promise<void> {
     });
   } finally {
     isSyncing = false;
+  }
+}
+
+async function handleEncounteredArtists(artists: { id: string; name: string }[]): Promise<void> {
+  const settings = await storage.getSettings();
+  if (!settings.heuristicsEnabled) return;
+
+  const token = await storage.getAuthToken();
+  const username = await storage.getUsername();
+  if (!token || !username) return;
+
+  const csvIds = new Set(await storage.getLastKnownArtistIds());
+  const blockedIds = new Set(await storage.getBlockedArtistIds());
+  const whitelistIds = await storage.getWhitelistIds();
+  const existingScores = await storage.getHeuristicScores();
+
+  // Only score artists we haven't seen before and that aren't already handled
+  const toScore = artists.filter(
+    (a) =>
+      !csvIds.has(a.id) &&
+      !blockedIds.has(a.id) &&
+      !whitelistIds.has(a.id) &&
+      !existingScores[a.id]
+  );
+
+  for (const artist of toScore) {
+    const score = await scoreArtist(artist, token);
+    if (!score) continue;
+
+    await storage.setHeuristicScore(artist.id, score);
+
+    if (score.score >= settings.autoBlockThreshold) {
+      const result = await blockArtists([artist], username, token);
+      if (result.blocked.length > 0) {
+        await storage.addBlockedArtistIds(result.blocked);
+      }
+    } else if (score.score >= settings.flagThreshold) {
+      await storage.addFlaggedArtist(toFlaggedArtist(artist, score));
+    }
   }
 }
 
@@ -172,6 +183,11 @@ chrome.runtime.onMessage.addListener((message: MessageType, _sender, sendRespons
   if (message.type === "DISMISS_FLAGGED") {
     storage.removeFlaggedArtist(message.id).then(() => sendResponse({ ok: true }));
     return true;
+  }
+
+  if (message.type === "ARTISTS_ENCOUNTERED") {
+    handleEncounteredArtists(message.artists);
+    return false; // fire-and-forget, no response needed
   }
 
   return false;
