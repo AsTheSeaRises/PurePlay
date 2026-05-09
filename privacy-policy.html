@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — PurePlay</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 720px;
+      margin: 48px auto;
+      padding: 0 24px;
+      color: #1a1a1a;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    h1 { font-size: 28px; margin-bottom: 4px; }
+    h2 { font-size: 18px; margin-top: 36px; border-bottom: 1px solid #e5e5e5; padding-bottom: 6px; }
+    .meta { color: #666; font-size: 14px; margin-bottom: 40px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+    th { text-align: left; background: #f5f5f5; padding: 10px 12px; border: 1px solid #ddd; }
+    td { padding: 10px 12px; border: 1px solid #ddd; vertical-align: top; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+    a { color: #1a73e8; }
+  </style>
+</head>
+<body>
+
+<h1>Privacy Policy — PurePlay</h1>
+<p class="meta">Last updated: May 9, 2026</p>
+
+<p>PurePlay is a Chrome extension that automatically blocks AI-generated artists on Spotify. This policy explains what data the extension accesses, how it is used, and how it is stored.</p>
+
+<h2>Summary</h2>
+<p>PurePlay stores all data locally on your device. It does not collect, transmit, or sell personal information. No PurePlay servers exist. The only network requests go to Spotify (to block artists using your existing session) and GitHub (to download a public community list).</p>
+
+<h2>Data Accessed</h2>
+
+<h3>Spotify Session Token</h3>
+<p>When you use Spotify Web Player, PurePlay reads the temporary authentication token that Spotify creates in your browser. This token is used solely to send block and unblock requests to Spotify on your behalf — the same action you would take manually through the Spotify interface. The token is stored in <code>chrome.storage.session</code> and is automatically cleared when you close Chrome.</p>
+
+<h3>Spotify Username</h3>
+<p>Your Spotify user ID is read from the Spotify API to associate block requests with your account. This is required by Spotify's API. It is stored locally on your device and never transmitted to any PurePlay server.</p>
+
+<h3>Blocked Artist Data</h3>
+<p>PurePlay stores a list of blocked artist IDs and names locally on your device, so it can avoid redundant block requests on future syncs and display your blocked artist history in the settings page.</p>
+
+<h3>Extension Settings</h3>
+<p>Your preferences (sync frequency, detection thresholds, whitelist) are stored locally using Chrome's built-in storage APIs.</p>
+
+<h2>Where Data Is Stored</h2>
+<ul>
+  <li><strong>chrome.storage.session</strong> — Spotify auth token. Cleared automatically when Chrome closes.</li>
+  <li><strong>chrome.storage.local</strong> — Blocked artist list, settings, whitelist. Stays on your device until you clear it or uninstall the extension.</li>
+</ul>
+<p>No data is stored on any external server owned or operated by PurePlay.</p>
+
+<h2>External Services</h2>
+<table>
+  <tr>
+    <th>Service</th>
+    <th>Purpose</th>
+    <th>Data Sent</th>
+  </tr>
+  <tr>
+    <td><strong>Spotify</strong><br><small>open.spotify.com<br>spclient.wg.spotify.com<br>api.spotify.com</small></td>
+    <td>Block/unblock artists; read artist metadata for heuristic detection</td>
+    <td>Your existing Spotify session token; artist IDs to block</td>
+  </tr>
+  <tr>
+    <td><strong>GitHub</strong><br><small>raw.githubusercontent.com<br>api.github.com</small></td>
+    <td>Download the community AI artist list and check for updates</td>
+    <td>No personal data — reads a public CSV file only</td>
+  </tr>
+</table>
+
+<h2>What PurePlay Does NOT Do</h2>
+<ul>
+  <li>Does not collect, transmit, or sell any personal information</li>
+  <li>Does not track your listening history or browsing activity</li>
+  <li>Does not store your Spotify password</li>
+  <li>Does not send any data to PurePlay servers (there are none)</li>
+  <li>Does not modify your Spotify playlists or library — only blocks/unblocks artists</li>
+  <li>Does not use analytics, telemetry, or any third-party tracking</li>
+</ul>
+
+<h2>Your Control</h2>
+<ul>
+  <li>View all blocked artists in the extension's settings page</li>
+  <li>Clear all extension data at any time using "Clear all data &amp; reset" in settings</li>
+  <li>Uninstall the extension at any time to remove all locally stored data</li>
+  <li>Whitelist artists to prevent them from ever being blocked</li>
+</ul>
+
+<h2>Changes to This Policy</h2>
+<p>If this policy is updated, the changes will be reflected here with an updated date. Changes are only made through new extension versions published on the Chrome Web Store.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy? Open an issue on the <a href="https://github.com/AsTheSeaRises/PurePlay/issues">GitHub repository</a>.</p>
+
+</body>
+</html>
