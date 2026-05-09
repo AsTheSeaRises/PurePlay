@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>PurePlay — Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>PurePlay Settings</h1>
+
+      <section>
+        <h2>Sync</h2>
+        <label>
+          Sync frequency (hours)
+          <input type="number" id="syncFrequencyHours" min="1" max="168" value="24" />
+        </label>
+        <label>
+          CSV source URL
+          <input type="url" id="csvSourceUrl" />
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="unblockRemovedArtists" />
+          Unblock artists removed from the list
+        </label>
+      </section>
+
+      <section>
+        <h2>Heuristics (experimental)</h2>
+        <label class="checkbox-label">
+          <input type="checkbox" id="heuristicsEnabled" />
+          Enable heuristic AI detection
+        </label>
+        <label>
+          Auto-block threshold (score ≥)
+          <input type="range" id="autoBlockThreshold" min="50" max="100" step="5" />
+          <span id="autoBlockThresholdValue">80</span>
+        </label>
+        <label>
+          Flag for review threshold (score ≥)
+          <input type="range" id="flagThreshold" min="30" max="90" step="5" />
+          <span id="flagThresholdValue">50</span>
+        </label>
+      </section>
+
+      <section>
+        <h2>Whitelist</h2>
+        <p class="hint">Artists here will never be blocked. One Spotify artist ID per line.</p>
+        <textarea id="whitelistInput" rows="6" placeholder="4Z8W4fKeB5YxbusRsdQVPb"></textarea>
+        <div class="whitelist-actions">
+          <button id="importWhitelist">Import</button>
+          <button id="exportWhitelist">Export</button>
+        </div>
+      </section>
+
+      <section class="danger-zone">
+        <h2>Reset</h2>
+        <button id="clearAll" class="danger-btn">Clear all data &amp; reset</button>
+      </section>
+
+      <div class="save-row">
+        <button id="saveBtn" class="save-btn">Save settings</button>
+        <span id="savedMsg" class="saved-msg hidden">Saved!</span>
+      </div>
+    </div>
+    <script type="module" src="options.ts"></script>
+  </body>
+</html>

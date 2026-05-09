@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>PurePlay</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="header">
+      <span class="logo">PurePlay</span>
+      <a class="settings-btn" id="openOptions" title="Settings">⚙</a>
+    </div>
+
+    <div class="status-row">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">Loading…</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value" id="totalBlocked">—</div>
+        <div class="stat-label">Total blocked</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="sessionBlocked">—</div>
+        <div class="stat-label">This session</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="flaggedCount">—</div>
+        <div class="stat-label">Flagged</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="last-sync" id="lastSync">Last sync: never</div>
+
+    <button class="sync-btn" id="syncBtn">↻ Sync Now</button>
+
+    <div id="flaggedSection" class="flagged-section hidden">
+      <div class="section-title">Flagged for review</div>
+      <ul class="flagged-list" id="flaggedList"></ul>
+    </div>
+
+    <div id="errorsSection" class="errors-section hidden">
+      <div class="section-title">Errors</div>
+      <ul class="error-list" id="errorList"></ul>
+    </div>
+
+    <script type="module" src="popup.ts"></script>
+  </body>
+</html>
