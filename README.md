@@ -14,6 +14,8 @@ Spotify is increasingly filled with AI-generated "artists": algorithmically prod
 - Lets you whitelist artists you want to keep
 - Lets you report suspected AI artists back to the community
 
+![PurePlay popup showing Active status with 7,004 artists blocked](docs/screenshot-popup.png)
+
 ---
 
 ## Installation
@@ -80,6 +82,8 @@ Click the PurePlay icon in your Chrome toolbar to open the popup:
 ## Settings Page
 
 Open PurePlay's settings by clicking **⚙ Settings** in the popup, or right-clicking the extension icon and choosing **Options**.
+
+![PurePlay Settings page](docs/screenshot-settings.png)
 
 ### Sync settings
 
