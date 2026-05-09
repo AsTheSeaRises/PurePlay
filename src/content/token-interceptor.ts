@@ -143,7 +143,7 @@ function showToast(message: string): void {
 }
 
 document.addEventListener("keydown", (e) => {
-  if (!e.altKey || !e.shiftKey || e.key !== "R") return;
+  if (!e.altKey || !e.shiftKey || e.code !== "KeyR") return;
   e.preventDefault();
 
   const artist = getCurrentArtist();
