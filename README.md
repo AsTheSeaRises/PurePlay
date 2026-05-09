@@ -1,6 +1,6 @@
-# PurePlay — Block AI Artists on Spotify
+# PurePlay - Block AI Artists on Spotify
 
-**PurePlay** is a free Chrome extension that automatically blocks AI-generated artists from your Spotify account. Once installed, it works silently in the background — no maintenance needed.
+**PurePlay** is a free Chrome extension that automatically blocks AI-generated artists from your Spotify account. Once installed, it works silently in the background - no maintenance needed.
 
 ---
 
@@ -10,7 +10,7 @@ Spotify is increasingly filled with AI-generated "artists": algorithmically prod
 
 - Blocks thousands of known AI artists from your Spotify account
 - Syncs automatically whenever you open Spotify
-- Updates as the community list grows — no action needed from you
+- Updates as the community list grows - no action needed from you
 - Lets you whitelist artists you want to keep
 - Lets you report suspected AI artists back to the community
 
@@ -20,11 +20,11 @@ Spotify is increasingly filled with AI-generated "artists": algorithmically prod
 
 ## Installation
 
-> PurePlay is not yet on the Chrome Web Store — it's coming soon. In the meantime, here's how to install it manually. It takes about 5 minutes and you only have to do it once.
+> PurePlay is not yet on the Chrome Web Store - it's coming soon. In the meantime, here's how to install it manually. It takes about 5 minutes and you only have to do it once.
 
 ---
 
-### Step 1 — Download the extension
+### Step 1 - Download the extension
 
 1. Go to the [**Releases page**](https://github.com/AsTheSeaRises/PurePlay/releases)
 2. Click on the most recent release (at the top of the list)
@@ -34,22 +34,22 @@ A file called `pureplay-v1.0.0.zip` will appear in your Downloads folder.
 
 ---
 
-### Step 2 — Unzip the file
+### Step 2 - Unzip the file
 
 **On a Mac:**
 - Double-click the zip file in your Downloads folder. A new folder called `pureplay-v1.0.0` will appear next to it.
-- Move that folder somewhere permanent — for example, drag it to your **Documents** folder.
+- Move that folder somewhere permanent - for example, drag it to your **Documents** folder.
 
 **On Windows:**
 - Right-click the zip file and choose **Extract All…**
 - Click **Extract**. A new folder called `pureplay-v1.0.0` will appear.
-- Move that folder somewhere permanent — for example, drag it to your **Documents** folder.
+- Move that folder somewhere permanent - for example, drag it to your **Documents** folder.
 
 > **Important:** Don't delete or move this folder after installation. Chrome needs it to stay in the same place.
 
 ---
 
-### Step 3 — Open Chrome's Extensions page
+### Step 3 - Open Chrome's Extensions page
 
 1. Open **Google Chrome**
 2. In the address bar at the top, type: `chrome://extensions` and press **Enter**
@@ -58,7 +58,7 @@ You'll see a page titled "Extensions".
 
 ---
 
-### Step 4 — Turn on Developer Mode
+### Step 4 - Turn on Developer Mode
 
 Look in the **top-right corner** of the Extensions page. You'll see a switch labelled **Developer mode**.
 
@@ -66,7 +66,7 @@ Click it to turn it **on**. (The switch will turn blue and a few new buttons wil
 
 ---
 
-### Step 5 — Load PurePlay
+### Step 5 - Load PurePlay
 
 1. Click the **Load unpacked** button that just appeared in the top-left
 2. A folder browser window will open
@@ -78,10 +78,10 @@ PurePlay will now appear in your extensions list with a green checkmark.
 
 ---
 
-### Step 6 — Pin PurePlay to your toolbar (recommended)
+### Step 6 - Pin PurePlay to your toolbar (recommended)
 
 1. Look for the **puzzle piece icon** (🧩) in the top-right corner of Chrome, next to the address bar
-2. Click it — a list of your extensions will appear
+2. Click it - a list of your extensions will appear
 3. Find **PurePlay** in the list and click the **pin icon** (📌) next to it
 
 The PurePlay icon will now always be visible in your Chrome toolbar.
@@ -105,11 +105,11 @@ Click the PurePlay icon in your Chrome toolbar to open the popup:
 | Item | What it means |
 |---|---|
 | **Active** (green dot) | Extension is running normally |
-| **Active (with errors)** (yellow dot) | Something went wrong — see the error message below |
+| **Active (with errors)** (yellow dot) | Something went wrong - see the error message below |
 | **Syncing…** (animated dot) | Currently checking for new AI artists to block |
 | **Total blocked** | How many AI artists have been blocked on your account |
 | **This session** | Artists blocked since you last opened Spotify |
-| **Flagged for review** | Artists detected as *possibly* AI but not yet blocked — you decide |
+| **Flagged for review** | Artists detected as *possibly* AI but not yet blocked - you decide |
 | **Last sync** | When PurePlay last checked for updates |
 | **↻ Sync Now** | Manually trigger a sync right now |
 | **⚙ Settings** | Open the full settings page |
@@ -153,7 +153,7 @@ Found an AI artist that isn't on the list yet? Report it to the community.
 
 1. Paste the artist's Spotify URL or ID into the field
 2. Add an optional reason
-3. Click **Report on GitHub** — this opens a pre-filled GitHub issue for the community to review
+3. Click **Report on GitHub** - this opens a pre-filled GitHub issue for the community to review
 
 ---
 
@@ -190,7 +190,7 @@ No. It only reads the temporary session token that Spotify Web Player creates wh
 No. PurePlay runs in the background and only contacts Spotify briefly during sync. You won't notice any difference.
 
 **How does it actually block artists?**  
-It uses the same "block artist" feature built into Spotify — the same one you'd use if you right-clicked an artist and chose "Don't play this artist". PurePlay just does it in bulk automatically.
+It uses the same "block artist" feature built into Spotify - the same one you'd use if you right-clicked an artist and chose "Don't play this artist". PurePlay just does it in bulk automatically.
 
 **Can I undo the blocks?**  
 Yes. You can unblock artists directly in Spotify (artist page → three dots → Unblock). You can also enable "Unblock artists removed from the list" in settings, which will automatically unblock artists if they're ever removed from the community list.
@@ -199,7 +199,7 @@ Yes. You can unblock artists directly in Spotify (artist page → three dots →
 It's a CSV file maintained by the [CennoxX/spotify-ai-blocker](https://github.com/CennoxX/spotify-ai-blocker) project. Anyone can submit new artists via GitHub Issues. PurePlay checks this list for updates every 24 hours by default.
 
 **I whitelisted an artist and they still got blocked. Why?**  
-Make sure you saved the settings after adding them to the whitelist. Also check that the ID you entered is correct — use the steps above to find the exact ID from the Spotify URL.
+Make sure you saved the settings after adding them to the whitelist. Also check that the ID you entered is correct - use the steps above to find the exact ID from the Spotify URL.
 
 **The popup shows "No auth token". What do I do?**  
 This means PurePlay hasn't captured your Spotify session yet. Make sure you have Spotify Web Player open at [open.spotify.com](https://open.spotify.com) in the same Chrome window, and that you're logged in. Try refreshing the Spotify tab. If the error persists, try clicking "Clear all data & reset" in Settings, then refresh Spotify.
