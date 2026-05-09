@@ -53,6 +53,31 @@
         </div>
       </section>
 
+      <section>
+        <h2>Blocked Artists</h2>
+        <p class="hint">Artists blocked by PurePlay on your Spotify account.</p>
+        <div class="blocked-header">
+          <span id="blockedCount">0 artists</span>
+          <input type="text" id="blockedSearch" placeholder="Search by name or ID…" />
+        </div>
+        <ul id="blockedList" class="blocked-list"></ul>
+        <button id="blockedShowMore" class="hidden">Show more</button>
+      </section>
+
+      <section>
+        <h2>Report AI Artist</h2>
+        <p class="hint">Report a suspected AI artist to the community list on GitHub.</p>
+        <label>
+          Spotify artist URL or ID
+          <input type="text" id="reportArtistInput" placeholder="https://open.spotify.com/artist/… or artist ID" />
+        </label>
+        <label>
+          Reason (optional)
+          <input type="text" id="reportReason" placeholder="Why do you think this is AI-generated?" />
+        </label>
+        <button id="reportBtn" class="report-btn">Report on GitHub</button>
+      </section>
+
       <section class="danger-zone">
         <h2>Reset</h2>
         <button id="clearAll" class="danger-btn">Clear all data &amp; reset</button>

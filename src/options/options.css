@@ -180,3 +180,106 @@ label > span {
   color: #1db954;
   font-weight: 600;
 }
+
+/* Blocked artists viewer */
+.blocked-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.blocked-header span {
+  font-size: 13px;
+  color: #1db954;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.blocked-header input[type="text"] {
+  background: #242424;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-size: 13px;
+  padding: 7px 10px;
+  flex: 1;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.blocked-header input[type="text"]:focus {
+  border-color: #1db954;
+}
+
+.blocked-list {
+  list-style: none;
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.blocked-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+.blocked-item:hover {
+  background: #242424;
+}
+
+.blocked-item-name {
+  color: #e0e0e0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blocked-item-id {
+  font-size: 11px;
+  color: #666;
+  font-family: monospace;
+  margin-left: 8px;
+}
+
+.blocked-item-link {
+  color: #1db954;
+  text-decoration: none;
+  font-size: 11px;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+.blocked-item-link:hover {
+  text-decoration: underline;
+}
+
+/* Report section */
+.report-btn {
+  background: #1db954;
+  color: #000;
+  border-color: transparent;
+  font-weight: 600;
+}
+.report-btn:hover {
+  background: #1ed760;
+}
+
+input[type="text"] {
+  background: #242424;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-size: 13px;
+  padding: 7px 10px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s;
+}
+input[type="text"]:focus {
+  border-color: #1db954;
+}

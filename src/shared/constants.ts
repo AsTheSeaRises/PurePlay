@@ -23,6 +23,8 @@ export const DEFAULT_SETTINGS = {
   csvSourceUrl: CSV_RAW_URL,
 };
 
+export const GITHUB_REPORT_URL = `https://github.com/${CSV_REPO_OWNER}/${CSV_REPO_NAME}/issues/new`;
+
 export const STORAGE_KEYS = {
   AUTH_TOKEN: "authToken",
   USERNAME: "username",
@@ -38,4 +40,5 @@ export const STORAGE_KEYS = {
   WHITELIST: "whitelist",
   SETTINGS: "settings",
   ERRORS: "errors",
+  ARTIST_NAME_MAP: "artistNameMap",
 } as const;

@@ -1,3 +1,4 @@
+import { GITHUB_REPORT_URL } from "../shared/constants";
 import type { ErrorEntry, FlaggedArtist } from "../shared/types";
 
 interface Status {
@@ -85,6 +86,7 @@ function renderFlagged(flagged: FlaggedArtist[]): void {
     actions.className = "flagged-actions";
     actions.appendChild(makeButton("Block", "block", artist.id, artist.name));
     actions.appendChild(makeButton("Allow", "whitelist", artist.id, artist.name));
+    actions.appendChild(makeButton("Report", "report", artist.id, artist.name));
     actions.appendChild(makeButton("×", "dismiss", artist.id));
 
     li.appendChild(nameSpan);
@@ -149,6 +151,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const action = btn.dataset["action"];
     const id = btn.dataset["id"]!;
     const name = btn.dataset["name"] ?? "";
+
+    if (action === "report") {
+      const title = "Report AI artist: " + (name || id);
+      const body = "**Artist:** " + (name || "Unknown") + "\n**Spotify ID:** " + id + "\n**Spotify URL:** https://open.spotify.com/artist/" + id + "\n\n_Reported via PurePlay extension_";
+      const url = GITHUB_REPORT_URL + "?title=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(body);
+      window.open(url, "_blank");
+      return;
+    }
 
     if (action === "whitelist") {
       await chrome.runtime.sendMessage({ type: "WHITELIST_ARTIST", id, name });

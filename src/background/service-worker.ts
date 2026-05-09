@@ -1,4 +1,4 @@
-import { ALARM_NAME } from "../shared/constants";
+import { ALARM_NAME, SPOTIFY_API_BASE } from "../shared/constants";
 import { storage } from "../shared/storage";
 import type { MessageType } from "../shared/types";
 import { blockArtists, unblockArtists } from "./blocker";
@@ -20,6 +20,10 @@ async function runSyncPipeline(): Promise<void> {
       await storage.addError({ message: "No auth token — open Spotify first", context: "service-worker" });
       return;
     }
+
+    // We have valid credentials — clear any stale "no auth token" errors from
+    // earlier failed attempts before the user opened Spotify.
+    await storage.clearErrors();
 
     const settings = await storage.getSettings();
 
@@ -68,6 +72,16 @@ async function runSyncPipeline(): Promise<void> {
     // Update known state
     await storage.setLastKnownArtistIds(fullList.map((a) => a.id));
     await storage.setLastSyncSha(sha);
+
+    // Save artist name map for the blocked viewer
+    const nameMap: Record<string, string> = {};
+    for (const a of fullList) {
+      nameMap[a.id] = a.name;
+    }
+    await storage.setArtistNameMap(nameMap);
+
+    // Clear any stale errors from previous failed attempts
+    await storage.clearErrors();
   } catch (err) {
     await storage.addError({
       message: err instanceof Error ? err.message : "Unknown sync error",
@@ -135,16 +149,33 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 chrome.runtime.onMessage.addListener((message: MessageType, _sender, sendResponse) => {
   if (message.type === "AUTH_TOKEN") {
     const { token, username } = message;
-    storage.setAuthToken(token, username).then(async () => {
-      // Schedule recurring alarm if not already set
+
+    (async () => {
+      let resolvedUsername = username;
+      if (!resolvedUsername) {
+        try {
+          const res = await fetch(`${SPOTIFY_API_BASE}/me`, {
+            headers: { Authorization: token },
+          });
+          if (res.ok) {
+            const data = await res.json();
+            resolvedUsername = data.id ?? "";
+          }
+        } catch { /* API fallback failed, will retry on next token capture */ }
+      }
+
+      await storage.setAuthToken(token, resolvedUsername);
+
       const existing = await chrome.alarms.get(ALARM_NAME);
       if (!existing) {
         const settings = await storage.getSettings();
         scheduleAlarm(settings.syncFrequencyHours);
-        // Trigger first sync shortly after token capture
-        runSyncPipeline();
       }
-    });
+
+      // Always sync when we get a fresh token (guard prevents concurrent runs)
+      runSyncPipeline();
+    })();
+
     return false;
   }
 

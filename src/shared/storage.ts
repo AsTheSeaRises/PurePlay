@@ -147,16 +147,30 @@ export const storage = {
 
   async addError(entry: Omit<ErrorEntry, "timestamp" | "resolved">): Promise<void> {
     const errors = await this.getErrors();
+    // Deduplicate: remove previous unresolved errors with the same message
+    const deduped = errors.filter((e) => e.resolved || e.message !== entry.message);
     const newErrors = [
       { ...entry, timestamp: Date.now(), resolved: false },
-      ...errors,
-    ].slice(0, 50); // keep last 50 errors
+      ...deduped,
+    ].slice(0, 50);
     await set(STORAGE_KEYS.ERRORS, newErrors);
   },
 
   async clearResolvedErrors(): Promise<void> {
     const errors = await this.getErrors();
     await set(STORAGE_KEYS.ERRORS, errors.filter((e) => !e.resolved));
+  },
+
+  async clearErrors(): Promise<void> {
+    await set(STORAGE_KEYS.ERRORS, []);
+  },
+
+  async getArtistNameMap(): Promise<Record<string, string>> {
+    return get(STORAGE_KEYS.ARTIST_NAME_MAP, {});
+  },
+
+  async setArtistNameMap(map: Record<string, string>): Promise<void> {
+    await set(STORAGE_KEYS.ARTIST_NAME_MAP, map);
   },
 
   async clearAll(): Promise<void> {
