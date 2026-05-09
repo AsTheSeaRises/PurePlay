@@ -143,7 +143,7 @@ function showToast(message: string): void {
 }
 
 document.addEventListener("keydown", (e) => {
-  if (!e.altKey || !e.shiftKey || e.code !== "KeyR") return;
+  if (!e.ctrlKey || !e.shiftKey || e.code !== "KeyR") return;
   e.preventDefault();
 
   const artist = getCurrentArtist();
@@ -158,7 +158,7 @@ document.addEventListener("keydown", (e) => {
     `**Spotify ID:** ${artist.id}`,
     `**Spotify URL:** https://open.spotify.com/artist/${artist.id}`,
     "",
-    "_Reported via PurePlay extension (Alt+Shift+R)_",
+    "_Reported via PurePlay extension (Ctrl+Shift+R)_",
   ].join("\n");
 
   const url = `${GITHUB_REPORT_URL}?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
