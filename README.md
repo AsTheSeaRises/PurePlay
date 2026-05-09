@@ -94,7 +94,19 @@ The PurePlay icon will now always be visible in your Chrome toolbar.
 2. Log in if you aren't already
 3. PurePlay will automatically detect your session and begin syncing
 
-That's it. The first sync will block all currently known AI artists. You'll see the count in the PurePlay popup (click the icon in your toolbar).\n\n---\n\n## Keyboard Shortcut\n\nWhile listening on Spotify, press **Alt+Shift+R** to instantly report the currently playing artist as AI-generated.\n\n- A green message will briefly appear on screen confirming it worked\n- A new tab will open with a pre-filled report form for the community list\n- Submit the form to flag the artist for review\n\nNo need to copy URLs or dig through menus - just press the shortcut while the track is playing.
+That's it. The first sync will block all currently known AI artists. You'll see the count in the PurePlay popup (click the icon in your toolbar).
+
+---
+
+## Keyboard Shortcut
+
+While listening on Spotify, press **Option+Shift+R** (Mac) or **Alt+Shift+R** (Windows) to instantly report the currently playing artist as AI-generated.
+
+- A green message will briefly appear on screen confirming it worked
+- A new tab will open with a pre-filled report form for the community list
+- Submit the form to flag the artist for review
+
+No need to copy URLs or dig through menus - just press the shortcut while the track is playing.
 
 ---
 
@@ -181,27 +193,30 @@ In the example above: **`4Z8WiqH9PZ97uS6Z2MjaSI`**
 
 ---
 
-## Frequently Asked Questions\n\n**Is there a keyboard shortcut to report an artist?**  \nYes. Press **Alt+Shift+R** while a track is playing on Spotify. A new tab will open with a pre-filled report form. A green confirmation message will appear briefly on the Spotify page.
+## Frequently Asked Questions
 
-**Does PurePlay access my Spotify password or payment info?**  
+**Is there a keyboard shortcut to report an artist?**
+Yes. Press **Option+Shift+R** (Mac) or **Alt+Shift+R** (Windows) while a track is playing on Spotify. A new tab will open with a pre-filled report form and a green confirmation message will briefly appear on the page.
+
+**Does PurePlay access my Spotify password or payment info?**
 No. It only reads the temporary session token that Spotify Web Player creates when you log in. This is the same kind of token Spotify uses internally to load your library.
 
-**Will it slow down Spotify?**  
+**Will it slow down Spotify?**
 No. PurePlay runs in the background and only contacts Spotify briefly during sync. You won't notice any difference.
 
-**How does it actually block artists?**  
+**How does it actually block artists?**
 It uses the same "block artist" feature built into Spotify - the same one you'd use if you right-clicked an artist and chose "Don't play this artist". PurePlay just does it in bulk automatically.
 
-**Can I undo the blocks?**  
+**Can I undo the blocks?**
 Yes. You can unblock artists directly in Spotify (artist page → three dots → Unblock). You can also enable "Unblock artists removed from the list" in settings, which will automatically unblock artists if they're ever removed from the community list.
 
-**What is the community list?**  
+**What is the community list?**
 It's a CSV file maintained by the [CennoxX/spotify-ai-blocker](https://github.com/CennoxX/spotify-ai-blocker) project. Anyone can submit new artists via GitHub Issues. PurePlay checks this list for updates every 24 hours by default.
 
-**I whitelisted an artist and they still got blocked. Why?**  
+**I whitelisted an artist and they still got blocked. Why?**
 Make sure you saved the settings after adding them to the whitelist. Also check that the ID you entered is correct - use the steps above to find the exact ID from the Spotify URL.
 
-**The popup shows "No auth token". What do I do?**  
+**The popup shows "No auth token". What do I do?**
 This means PurePlay hasn't captured your Spotify session yet. Make sure you have Spotify Web Player open at [open.spotify.com](https://open.spotify.com) in the same Chrome window, and that you're logged in. Try refreshing the Spotify tab. If the error persists, try clicking "Clear all data & reset" in Settings, then refresh Spotify.
 
 ---
