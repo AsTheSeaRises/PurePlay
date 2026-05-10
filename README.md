@@ -1,9 +1,5 @@
 # PurePlay - Block AI Artists on Spotify
 
-<p align="center">
-  <img src="docs/logo-hero.png" alt="PurePlay mascot" width="480" />
-</p>
-
 **PurePlay** is a free Chrome extension that automatically blocks AI-generated artists from your Spotify account. Once installed, it works silently in the background - no maintenance needed.
 
 ---
