@@ -102,10 +102,18 @@ if (document.body) {
 // is hard-reload) and lets the user rebind the key in chrome://extensions/shortcuts.
 
 function getCurrentArtist(): { id: string; name: string } | null {
+  // Try a series of selectors, ordered most-specific to most-general. Spotify
+  // changes data-testid names occasionally, so we fall back to scoping by the
+  // bottom player region (aria-label "Now playing") and finally to any artist
+  // link inside the footer.
   const selectors = [
+    '[data-testid="now-playing-widget"] a[href*="/artist/"]',
     '[data-testid="nowplaying-widget"] a[href*="/artist/"]',
     '[data-testid="context-item-info-artist"] a[href*="/artist/"]',
+    '[aria-label="Now playing"] a[href*="/artist/"]',
+    '[data-testid="now-playing-bar"] a[href*="/artist/"]',
     'footer a[href*="/artist/"]',
+    '[class*="NowPlaying"] a[href*="/artist/"]',
   ];
   for (const selector of selectors) {
     const anchor = document.querySelector<HTMLAnchorElement>(selector);
