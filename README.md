@@ -241,6 +241,12 @@ Found an AI artist not on the list? Use the **Report AI Artist** feature in the 
 
 ---
 
+## References
+
+- [AI-generated tracks represent 44% of new uploaded music — Deezer Newsroom (April 2026)](https://newsroom-deezer.com/2026/04/ai-generated-tracks-represent-44-of-new-uploaded-music/#:~:text=Deezer%2C%20is%20receiving%20nearly%2075%2C000,synthetic%20content%20on%20the%20platform.)
+
+---
+
 ## Acknowledgements
 
 The artist blocklist is maintained by the community at [CennoxX/spotify-ai-blocker](https://github.com/CennoxX/spotify-ai-blocker). PurePlay is just a more convenient way to use it.
