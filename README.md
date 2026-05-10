@@ -244,6 +244,7 @@ Found an AI artist not on the list? Use the **Report AI Artist** feature in the 
 ## References
 
 - [AI-generated tracks represent 44% of new uploaded music — Deezer Newsroom (April 2026)](https://newsroom-deezer.com/2026/04/ai-generated-tracks-represent-44-of-new-uploaded-music/#:~:text=Deezer%2C%20is%20receiving%20nearly%2075%2C000,synthetic%20content%20on%20the%20platform.)
+- [Spotify has deleted 75M+ spammy tracks and unveils new AI music policies — Music Business Worldwide](https://www.musicbusinessworldwide.com/spotify-has-deleted-75m-spammy-tracks-as-it-unveils-new-ai-music-policies/#:~:text=Spotify%20has%20removed%20more%20than,generated%20content%20on%20its%20service.)
 
 ---
 
