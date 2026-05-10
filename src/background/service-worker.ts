@@ -145,6 +145,23 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   }
 });
 
+// Keyboard command: forward to the active Spotify tab so the content script
+// can read the currently playing artist and open a report issue.
+chrome.commands.onCommand.addListener(async (command) => {
+  if (command !== "report-current-artist") return;
+  const tabs = await chrome.tabs.query({ url: "https://open.spotify.com/*" });
+  const tab = tabs.find((t) => t.active) ?? tabs[0];
+  if (!tab?.id) return;
+  try {
+    await chrome.tabs.sendMessage(tab.id, { type: "REPORT_CURRENT_ARTIST" });
+  } catch {
+    // Content script absent (tab predates extension install/reload) — reload so
+    // the manifest content scripts inject. User presses the shortcut again.
+    chrome.tabs.reload(tab.id);
+  }
+});
+
+
 // Message handler: receive token from content script or commands from popup
 chrome.runtime.onMessage.addListener((message: MessageType, _sender, sendResponse) => {
   if (message.type === "AUTH_TOKEN") {

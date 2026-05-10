@@ -95,9 +95,11 @@ if (document.body) {
   document.addEventListener("DOMContentLoaded", startObserver, { once: true });
 }
 
-// ── Quick-report shortcut (Alt+Shift+R) ─────────────────────────────────────
-// While on Spotify, press Alt+Shift+R to open a pre-filled GitHub issue
-// reporting the currently playing artist as AI-generated.
+// ── Quick-report shortcut ───────────────────────────────────────────────────
+// Triggered by chrome.commands (registered in manifest.json) and forwarded
+// here by the service worker. Using chrome.commands instead of a DOM keydown
+// listener avoids conflicts with Chrome's built-in shortcuts (e.g. Ctrl+Shift+R
+// is hard-reload) and lets the user rebind the key in chrome://extensions/shortcuts.
 
 function getCurrentArtist(): { id: string; name: string } | null {
   const selectors = [
@@ -142,9 +144,8 @@ function showToast(message: string): void {
   }, 2500);
 }
 
-document.addEventListener("keydown", (e) => {
-  if (!e.ctrlKey || !e.shiftKey || e.code !== "KeyR") return;
-  e.preventDefault();
+chrome.runtime.onMessage.addListener((message) => {
+  if (!message || message.type !== "REPORT_CURRENT_ARTIST") return;
 
   const artist = getCurrentArtist();
   if (!artist) {
@@ -158,7 +159,7 @@ document.addEventListener("keydown", (e) => {
     `**Spotify ID:** ${artist.id}`,
     `**Spotify URL:** https://open.spotify.com/artist/${artist.id}`,
     "",
-    "_Reported via PurePlay extension (Ctrl+Shift+R)_",
+    "_Reported via PurePlay extension_",
   ].join("\n");
 
   const url = `${GITHUB_REPORT_URL}?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;

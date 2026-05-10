@@ -29,6 +29,15 @@
       "world": "ISOLATED"
     }
   ],
+  "commands": {
+    "report-current-artist": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Report the currently playing Spotify artist as AI-generated"
+    }
+  },
   "action": {
     "default_popup": "src/popup/popup.html",
     "default_icon": {
