@@ -237,6 +237,27 @@ Make sure you saved the settings after adding them to the whitelist. Also check 
 **The popup shows "No auth token". What do I do?**
 This means PurePlay hasn't captured your Spotify session yet. Make sure you have Spotify Web Player open at [open.spotify.com](https://open.spotify.com) in the same Chrome window, and that you're logged in. Try refreshing the Spotify tab. If the error persists, try clicking "Clear all data & reset" in Settings, then refresh Spotify.
 
+**What are Heuristics and how do they work?**
+Heuristics is an experimental feature (off by default) that lets PurePlay detect AI artists it hasn't seen before — without waiting for the community list to be updated. Enable it in Settings.
+
+When you browse Spotify, PurePlay spots artist links on the page and scores each new artist against six signals:
+
+| Signal | Max score | What it looks for |
+|---|---|---|
+| Name patterns | 10 | All-lowercase names, words like "lofi", "chill", "beats", "vibes" |
+| Low followers | 10 | Under 100 followers but still appearing in recommendations |
+| No social links | 15 | Only has a Spotify profile — no external links at all |
+| Catalogue velocity | 30 | 16+ tracks per month, or 50+ tracks released in under 3 months |
+| Track duration clustering | 20 | All tracks 2–3 minutes with suspiciously low variation |
+| No genre tags | 15 | Zero or one genre listed |
+
+Scores are 0–100. What happens next depends on your thresholds in Settings:
+- **≥ Auto-block threshold** (default 80): blocked on your Spotify account immediately
+- **≥ Flag threshold** (default 50): added to "Flagged for review" in the popup for you to decide
+
+**Does heuristic blocking open a GitHub report?**
+No — heuristic blocks are silent and local only. Only the manual keyboard shortcut (`Cmd/Ctrl+Shift+Y`) opens a GitHub issue to notify the community.
+
 ---
 
 ## Contributing
