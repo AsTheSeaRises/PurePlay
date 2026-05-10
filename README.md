@@ -112,6 +112,8 @@ While listening on Spotify, press the shortcut to instantly report and block the
 - A new tab opens with a pre-filled GitHub report form — submit it to flag the artist for the community list
 - The report is saved to **Settings → Your Reports** with a timestamp
 
+![Your Reports section showing blocked artists with timestamps](docs/screenshot-your-reports.png)
+
 **Change the shortcut:**
 1. In Chrome, go to `chrome://extensions/shortcuts`
 2. Find **PurePlay — Block AI Artists on Spotify**
