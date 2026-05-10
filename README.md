@@ -100,15 +100,25 @@ That's it. The first sync will block all currently known AI artists. You'll see 
 
 ## Keyboard Shortcut
 
-While listening on Spotify, press **Cmd+Shift+Y** (Mac) or **Ctrl+Shift+Y** (Windows) to instantly report the currently playing artist as AI-generated.
+While listening on Spotify, press the shortcut to instantly report and block the currently playing artist.
 
-You can change this shortcut at any time: go to `chrome://extensions/shortcuts` and rebind "Report the currently playing Spotify artist".
+**Default shortcut:**
+- **Mac:** `Cmd+Shift+Y`
+- **Windows/Linux:** `Ctrl+Shift+Y`
 
-- A green message will briefly appear on screen confirming it worked
-- A new tab will open with a pre-filled report form for the community list
-- Submit the form to flag the artist for review
+**What happens:**
+- The artist is immediately blocked on your Spotify account
+- A green confirmation message briefly appears on screen
+- A new tab opens with a pre-filled GitHub report form — submit it to flag the artist for the community list
+- The report is saved to **Settings → Your Reports** with a timestamp
 
-No need to copy URLs or dig through menus - just press the shortcut while the track is playing.
+**Change the shortcut:**
+1. In Chrome, go to `chrome://extensions/shortcuts`
+2. Find **PurePlay — Block AI Artists on Spotify**
+3. Click the pencil icon next to "Report the currently playing Spotify artist"
+4. Press your preferred key combination
+
+> Note: some shortcuts may conflict with Spotify or Chrome. If pressing the shortcut seems to do nothing or skips the track, try a different combination.
 
 ---
 
@@ -198,7 +208,7 @@ In the example above: **`4Z8WiqH9PZ97uS6Z2MjaSI`**
 ## Frequently Asked Questions
 
 **Is there a keyboard shortcut to report an artist?**
-Yes. Press **Ctrl+Shift+Y (Windows) / Cmd+Shift+Y (Mac)** while a track is playing on Spotify. A new tab will open with a pre-filled report form and a green confirmation message will briefly appear on the page. Works on both Mac and Windows.
+Yes. Press **Cmd+Shift+Y (Mac)** or **Ctrl+Shift+Y (Windows)** while a track is playing on Spotify. The artist is blocked on your account immediately, a green confirmation appears, and a new tab opens with a pre-filled GitHub report form. You can rebind the shortcut at `chrome://extensions/shortcuts`.
 
 **Does PurePlay access my Spotify password or payment info?**
 No. It only reads the temporary session token that Spotify Web Player creates when you log in. This is the same kind of token Spotify uses internally to load your library.
