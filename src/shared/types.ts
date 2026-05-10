@@ -32,6 +32,12 @@ export interface WhitelistEntry {
   reason?: string;
 }
 
+export interface UserReport {
+  id: string;
+  name: string;
+  reportedAt: number;
+}
+
 export interface ErrorEntry {
   message: string;
   timestamp: number;
@@ -71,7 +77,8 @@ export type MessageType =
   | { type: "GET_STATUS" }
   | { type: "WHITELIST_ARTIST"; id: string; name: string }
   | { type: "DISMISS_FLAGGED"; id: string }
-  | { type: "ARTISTS_ENCOUNTERED"; artists: ArtistEntry[] };
+  | { type: "ARTISTS_ENCOUNTERED"; artists: ArtistEntry[] }
+  | { type: "REPORT_AND_BLOCK"; id: string; name: string };
 
 export interface SyncResult {
   newArtists: ArtistEntry[];

@@ -5,6 +5,7 @@ import type {
   HeuristicScore,
   RetryEntry,
   Settings,
+  UserReport,
   WhitelistEntry,
 } from "./types";
 
@@ -170,6 +171,24 @@ export const storage = {
   },
 
   async setArtistNameMap(map: Record<string, string>): Promise<void> {
+    await set(STORAGE_KEYS.ARTIST_NAME_MAP, map);
+  },
+
+  async getUserReports(): Promise<UserReport[]> {
+    return get(STORAGE_KEYS.USER_REPORTS, []);
+  },
+
+  async addUserReport(entry: UserReport): Promise<void> {
+    const list = await this.getUserReports();
+    const filtered = list.filter((e) => e.id !== entry.id);
+    await set(STORAGE_KEYS.USER_REPORTS, [entry, ...filtered]);
+  },
+
+  async addArtistName(id: string, name: string): Promise<void> {
+    if (!name) return;
+    const map = await this.getArtistNameMap();
+    if (map[id] === name) return;
+    map[id] = name;
     await set(STORAGE_KEYS.ARTIST_NAME_MAP, map);
   },
 

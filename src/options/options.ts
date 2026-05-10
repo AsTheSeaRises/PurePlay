@@ -236,4 +236,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Report AI artist
   el("reportBtn").addEventListener("click", reportArtist);
+
+  loadUserReports();
 });
+
+async function loadUserReports(): Promise<void> {
+  const reports = await storage.getUserReports();
+  const list = el("userReportsList");
+  const empty = el("userReportsEmpty");
+  list.textContent = "";
+  if (reports.length === 0) {
+    empty.classList.remove("hidden");
+    return;
+  }
+  empty.classList.add("hidden");
+  for (const r of reports) {
+    const li = document.createElement("li");
+    li.className = "blocked-item";
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "blocked-item-name";
+    nameSpan.textContent = r.name || r.id;
+    const dateSpan = document.createElement("span");
+    dateSpan.className = "blocked-item-id";
+    dateSpan.textContent = new Date(r.reportedAt).toLocaleString();
+    const link = document.createElement("a");
+    link.className = "blocked-item-link";
+    link.textContent = "open";
+    link.href = "https://open.spotify.com/artist/" + r.id;
+    link.target = "_blank";
+    link.rel = "noopener";
+    li.appendChild(nameSpan);
+    li.appendChild(dateSpan);
+    li.appendChild(link);
+    list.appendChild(li);
+  }
+}

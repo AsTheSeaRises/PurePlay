@@ -172,5 +172,15 @@ chrome.runtime.onMessage.addListener((message) => {
 
   const url = `${GITHUB_REPORT_URL}?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
   window.open(url, "_blank", "noopener");
-  showToast(`Reporting "${artist.name}" - check the new tab`);
+
+  chrome.runtime.sendMessage(
+    { type: "REPORT_AND_BLOCK", id: artist.id, name: artist.name },
+    (response) => {
+      if (chrome.runtime.lastError || !response?.ok) {
+        showToast(`Reported "${artist.name}" - block failed, check Spotify login`);
+      } else {
+        showToast(`Reported & blocked "${artist.name}"`);
+      }
+    }
+  );
 });

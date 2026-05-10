@@ -233,6 +233,26 @@ chrome.runtime.onMessage.addListener((message: MessageType, _sender, sendRespons
     return true;
   }
 
+  if (message.type === "REPORT_AND_BLOCK") {
+    const { id, name } = message;
+    (async () => {
+      await storage.addUserReport({ id, name, reportedAt: Date.now() });
+      await storage.addArtistName(id, name);
+      const token = await storage.getAuthToken();
+      const username = await storage.getUsername();
+      if (!token || !username) {
+        sendResponse({ ok: false, error: "no-auth" });
+        return;
+      }
+      const result = await blockArtists([{ id, name }], username, token);
+      if (result.blocked.length > 0) {
+        await storage.addBlockedArtistIds(result.blocked);
+      }
+      sendResponse({ ok: result.blocked.length > 0, failed: result.failed });
+    })();
+    return true;
+  }
+
   if (message.type === "ARTISTS_ENCOUNTERED") {
     handleEncounteredArtists(message.artists);
     return false; // fire-and-forget, no response needed

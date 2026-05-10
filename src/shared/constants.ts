@@ -41,4 +41,5 @@ export const STORAGE_KEYS = {
   SETTINGS: "settings",
   ERRORS: "errors",
   ARTIST_NAME_MAP: "artistNameMap",
+  USER_REPORTS: "userReports",
 } as const;
