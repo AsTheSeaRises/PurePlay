@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "PurePlay — Block AI Artists on Spotify",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Automatically blocks AI-generated artists on Spotify using community lists and smart heuristics.",
   "permissions": ["storage", "alarms"],
   "host_permissions": [
